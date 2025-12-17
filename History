@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>История — Флеш-карты</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+}
+h1 {
+    text-align: center;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+.card {
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 15px;
+}
+.question {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+button {
+    width: 100%;
+    margin: 5px 0;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #333;
+    color: white;
+}
+button.correct {
+    background: #2ecc71;
+}
+button.wrong {
+    background: #e74c3c;
+}
+</style>
+</head>
+<body>
+
+<h1>История: Алтын Орда · Ақ Орда · Моғолстан</h1>
+
+<div class="grid" id="cards"></div>
+
+<script>
+const questions = [
+    {
+        q: "Алтын Орда қай әулетке тиесілі болды?",
+        options: ["Шағатай", "Жошы", "Үгедей", "Төле"],
+        answer: 1
+    },
+    {
+        q: "Алтын Ордада ислам мемлекеттік дін болды қай хан кезінде?",
+        options: ["Бату хан", "Берке хан", "Өзбек хан", "Тоқтамыс хан"],
+        answer: 2
+    },
+    {
+        q: "Ақ Орда қай Жошы ұлысынан шықты?",
+        options: ["Бату", "Шайбан", "Орда Ежен", "Тоқай-Темір"],
+        answer: 2
+    },
+    {
+        q: "Ақ Орданың астанасы?",
+        options: ["Сарай", "Самарқанд", "Сығанақ", "Отырар"],
+        answer: 2
+    },
+    {
+        q: "Моғолстан қай ұлыстың орнына құрылды?",
+        options: ["Жошы", "Шағатай", "Үгедей", "Төле"],
+        answer: 1
+    },
+    {
+        q: "Моғолстанда Қазақ хандығының негізі қай жерде қаланды?",
+        options: ["Іле", "Сырдария", "Шу мен Талас", "Ертіс"],
+        answer: 2
+    },
+    {
+        q: "Әмір Темір Алтын Орданы қай жылдары талқандады?",
+        options: ["1380–1385", "1391–1395", "1400–1405", "1370–1375"],
+        answer: 1
+    },
+    {
+        q: "Әбілқайыр ханнан бөлініп кеткендер кімдер?",
+        options: ["Ұрыс хан мен Барақ", "Керей мен Жәнібек", "Тоқтамыс пен Едіге", "Есен-Бұға мен Тоғылық-Темір"],
+        answer: 1
+    }
+];
+
+const container = document.getElementById("cards");
+
+questions.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const q = document.createElement("div");
+    q.className = "question";
+    q.innerText = item.q;
+    card.appendChild(q);
+
+    item.options.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.onclick = () => {
+            if (i === item.answer) {
+                btn.classList.add("correct");
+            } else {
+                btn.classList.add("wrong");
+            }
+        };
+        card.appendChild(btn);
+    });
+
+    container.appendChild(card);
+});
+</script>
+
+</body>
+</html>
